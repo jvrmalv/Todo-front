@@ -14,11 +14,15 @@
               <v-text-field
                 v-model="createTodoProps.name"
                 label="Todo name"
+                counter
+                maxlength="20"
               ></v-text-field>
               <v-spacer></v-spacer>
               <v-text-field
                 v-model="createTodoProps.description"
                 label="Todo description"
+                counter
+                maxlength="40"
               ></v-text-field>
               <v-spacer></v-spacer>
               <v-btn v-on:click="$emit('create-todo', createTodoProps)"
@@ -45,12 +49,16 @@
             <v-card-actions>
               <v-text-field
                 v-model="editTodoProps.name"
+                counter
+                maxlength="20"
                 label="Todo name"
               ></v-text-field>
               <v-spacer></v-spacer>
               <v-text-field
                 v-model="editTodoProps.description"
                 label="Todo description"
+                counter
+                maxlength="40"
               ></v-text-field>
               <v-spacer></v-spacer>
               <v-btn
@@ -91,6 +99,10 @@ export default {
       },
       createDialog: false,
       editDialog: false,
+      rules: {
+        counter20: (value) => value.length() <= 20 || "Max of 20 characters",
+        counter40: (value) => value.length() <= 40 || "Max of 40 characters",
+      },
     };
   },
   components: {},
